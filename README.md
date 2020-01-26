@@ -1,4 +1,11 @@
-# nbdev template
+# edaguide
+> Discover useful ML features through Exploratory Data Analysis
 
-Use this template to more easily create your nbdev project.
 
+## Description 
+
+edaguide enables data-driven discovery of ML features by simplifying clustering, inspecting datapoints, and manually labeling datapoints
+
+## Install 
+
+`pip install edaguide`
