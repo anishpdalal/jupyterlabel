@@ -1,10 +1,10 @@
 SRC = $(wildcard notebooks/*.ipynb)
 
-all: edaguide docs
+all: jupyterlabel docs
 
-edaguide: $(SRC)
+jupyterlabel: $(SRC)
 	nbdev_build_lib
-	touch edaguide
+	touch jupyterlabel
 
 docs_serve: docs
 	cd docs && bundle exec jekyll serve
