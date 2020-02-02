@@ -68,73 +68,7 @@ labeler = labeler.Labeler(df, target_var, features=features)
 
 ### Label data one row at a time
 
-```python
-with labeler as l:
-    l()
-```
-
-    Valid options: Yes, No, save
-    Total samples labeled: 13/128
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Goal Scored</th>
-      <th>Ball Possession %</th>
-      <th>On-Target</th>
-      <th>Off-Target</th>
-      <th>Blocked</th>
-      <th>Corners</th>
-      <th>Offsides</th>
-      <th>Free Kicks</th>
-      <th>Saves</th>
-      <th>Pass Accuracy %</th>
-      <th>Passes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>118</th>
-      <td>2</td>
-      <td>38</td>
-      <td>7</td>
-      <td>4</td>
-      <td>2</td>
-      <td>6</td>
-      <td>1</td>
-      <td>18</td>
-      <td>1</td>
-      <td>69</td>
-      <td>399</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-    Enter option: save
-
-
-
-![png](docs/images/output_13_3.png)
-
+Notice that the target variable is excluded from the data frame row. The available options are the labels in the target variable column. After entering save, a csv file is written if an output path is defined and a confusion matrix is displayed to give feedback on your labelling efforts. Happy labelling!
 
 ```python
 Image(filename="../images/jupyterlabel.gif.png")
