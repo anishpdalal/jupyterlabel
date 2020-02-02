@@ -9,7 +9,10 @@ entries:
     - output: web,pdf
       title: Overview
       url: /
+    - output: web,pdf
+      title: jupyterlabel
+      url: /jupyterlabel
     output: web
-    title: edaguide
+    title: jupyterlabel
   output: web
   title: Sidebar

@@ -1,5 +1,6 @@
 {
-  "edaguide": {
-    "Overview": "/"
+  "jupyterlabel": {
+    "Overview": "/",
+    "jupyterlabel": "/jupyterlabel"
   }
 }

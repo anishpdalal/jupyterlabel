@@ -1,9 +1,9 @@
-repository: anishpdalal/edaguide
+repository: anishpdalal/jupyterlabel
 output: web
-topnav_title: edaguide
-site_title: edaguide
+topnav_title: jupyterlabel
+site_title: jupyterlabel
 company_name: Anish Dalal
-description: A library to help discover useful ML features through Exploratory Data Analysis
+description: A library to label data in Jupyter Notebooks
 # Set to false to disable KaTeX math
 use_math: true
 # Add Google analytics id if you have one and want to use it here
