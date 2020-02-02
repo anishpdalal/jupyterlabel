@@ -17,10 +17,15 @@ import seaborn as sns
 class Labeler:
     def __init__(self, df, target_var, output_path=None, features=None):
         """
-        Manually label data one row at a time
+        Manually label data one row at a time.
+
+        Example usage:
+
+        with Labeler as l:
+            l()
+
 
         Parameters
-
         ----------
 
         df: pd.DataFrame
