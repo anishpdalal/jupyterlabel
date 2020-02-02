@@ -16,6 +16,26 @@ import seaborn as sns
 # Cell
 class Labeler:
     def __init__(self, df, target_var, output_path=None, features=None):
+        """
+        Manually label data one row at a time
+
+        Parameters
+
+        ----------
+
+        df: pd.DataFrame
+            A single pandas DataFrame containing dataset to label
+
+        target_var: str
+            Column in df containing ground truth labels
+
+        output_path: str, optional, default: ``None``
+            Desired file path to store csv file containing manual labels
+
+        features: list of str, optional, default: ``None``
+            List of columns in df to view when labelling
+
+        """
         self.df = df
         self.features = features
         self.target_var = target_var

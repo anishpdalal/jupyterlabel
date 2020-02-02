@@ -29,6 +29,7 @@ from jupyterlabel import jupyterlabel as labeler
 
 ```python
 input_file = '../data/FIFA 2018 Statistics.csv'
+output_file = '../data/labels.csv'
 df = pd.read_csv(input_file)
 df.columns
 ```
@@ -63,7 +64,7 @@ features = [
     'Pass Accuracy %',
     'Passes'
 ]
-labeler = labeler.Labeler(df, target_var, features=features)
+labeler = labeler.Labeler(df, target_var, features=features, output_path=output_file)
 ```
 
 ### Label data one row at a time
