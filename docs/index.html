@@ -153,7 +153,6 @@ summary: "A library to label data in Jupyter Notebooks"
     <span class="s1">&#39;Pass Accuracy %&#39;</span><span class="p">,</span>
     <span class="s1">&#39;Passes&#39;</span>
 <span class="p">]</span>
-<span class="n">labeler</span> <span class="o">=</span> <span class="n">labeler</span><span class="o">.</span><span class="n">Labeler</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_var</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">output_file</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -164,6 +163,16 @@ summary: "A library to label data in Jupyter Notebooks"
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Label-data-one-row-at-a-time">Label data one row at a time<a class="anchor-link" href="#Label-data-one-row-at-a-time">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Usage">Usage<a class="anchor-link" href="#Usage">&#182;</a></h4><div class="highlight"><pre><span></span><span class="n">labeler</span> <span class="o">=</span> <span class="n">labeler</span><span class="o">.</span><span class="n">Labeler</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">target_var</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">,</span> <span class="n">output_path</span><span class="o">=</span><span class="n">output_file</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">labeler</span> <span class="k">as</span> <span class="n">l</span><span class="p">:</span>
+    <span class="n">l</span><span class="p">()</span>
+</pre></div>
+
 </div>
 </div>
 </div>

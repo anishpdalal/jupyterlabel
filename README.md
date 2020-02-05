@@ -64,10 +64,16 @@ features = [
     'Pass Accuracy %',
     'Passes'
 ]
-labeler = labeler.Labeler(df, target_var, features=features, output_path=output_file)
 ```
 
 ### Label data one row at a time
+
+#### Usage
+```python
+labeler = labeler.Labeler(df, target_var, features=features, output_path=output_file)
+with labeler as l:
+    l()
+```
 
 Notice that the target variable is excluded from the data frame row. The available options are the labels in the target variable column. After entering save, a csv file is written if an output path is defined and a confusion matrix is displayed to give feedback on your labelling efforts. Happy labelling!
 
@@ -78,6 +84,6 @@ Image(filename="../images/jupyterlabel.gif.png")
 
 
 
-![png](docs/images/output_14_0.png)
+![png](docs/images/output_15_0.png)
 
 

@@ -5,6 +5,7 @@ __all__ = ['Labeler']
 # Cell
 import csv
 import sys
+from typing import List
 
 from IPython.display import clear_output, display
 import matplotlib.pyplot as plt
@@ -15,13 +16,16 @@ import seaborn as sns
 
 # Cell
 class Labeler:
-    def __init__(self, df, target_var, output_path=None, features=None):
+    def __init__(self, df: pd.DataFrame, target_var: str,
+                 output_path: str=None, features: List[str]=None) -> None:
         """
         Manually label data one row at a time.
 
         Example usage:
 
-        with Labeler as l:
+        labeler = Labeler(df, target_var, features=features)
+
+        with labeler as l:
             l()
 
 
@@ -46,7 +50,11 @@ class Labeler:
         self.target_var = target_var
         self.output_path = output_path
 
-    def _validate_input(self):
+    def _validate_input(self) -> str:
+        """
+        Accept valid user input which is either a label
+        in target column or save
+        """
         while True:
             label = input('Enter option: ')
             if label == 'save' or label in self._labels:
@@ -55,13 +63,23 @@ class Labeler:
                 continue
         return label
 
-    def _clear_output(self):
+    def _clear_output(self) -> None:
+        """
+        clear Jupyter notebook cell output
+        """
         clear_output(wait=True)
 
-    def _display(self):
+    def _display(self) -> None:
+        """
+        display single data frame row in Jupyter notebook
+        """
         display(self._row[self.features])
 
-    def __call__(self):
+    def __call__(self) -> None:
+        """
+        Continually present sample from DataFrame and accept user
+        input until user enters 'save' or all rows have been sampled
+        """
         while self._count <= self._n:
             self._clear_output()
             print(f"Valid options: {', '.join(self._labels)}, save")
@@ -75,28 +93,41 @@ class Labeler:
             self._label_df = self._label_df.append(self._row.copy())
             self._count += 1
 
-    def __enter__(self):
+    def __enter__(self) -> "Labeler":
+        """
+        Map index integer to a label since confusion matrix API
+        requires integer labels
+        """
         self._labels = self.df[self.target_var].unique()
         self._mapping = {}
         self._n = len(self.df)
         self._count = 0
-        self._df = self.df[self.features + [self.target_var]].copy() if self.features else self.df.copy()
-        self._label_df = pd.DataFrame(columns=list(self._df.columns) + ['manual_label'])
+        self._df = self.df[self.features + [self.target_var]
+                           ].copy() if self.features else self.df.copy()
+        self._label_df = pd.DataFrame(columns=list(
+            self._df.columns) + ['manual_label'])
         for ix, label in enumerate(self._labels):
             self._mapping[ix] = label
         return self
 
-    def _plot_cm(self, cm):
+    def _plot_cm(self, cm) -> None:
+        """
+        plot confusion matrix
+        """
         fig = plt.figure()
-        ax= plt.subplot()
-        sns.heatmap(cm, annot=True, ax = ax, cmap=plt.cm.Blues)
-        ax.set_xlabel('Predicted labels');
-        ax.set_ylabel('True labels');
-        ax.set_title('Confusion Matrix');
-        ax.xaxis.set_ticklabels(self._labels);
-        ax.yaxis.set_ticklabels(self._labels);
+        ax = plt.subplot()
+        sns.heatmap(cm, annot=True, ax=ax, cmap=plt.cm.Blues)
+        ax.set_xlabel('Predicted labels')
+        ax.set_ylabel('True labels')
+        ax.set_title('Confusion Matrix')
+        ax.xaxis.set_ticklabels(self._labels)
+        ax.yaxis.set_ticklabels(self._labels)
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        """
+        Generate confusion matrix and write manual labels
+        along with row id to csv
+        """
         if self._count > 0:
             self._label_df['manual_label'].replace(self._mapping, inplace=True)
             cm = confusion_matrix(self._label_df[self.target_var],
